@@ -1,4 +1,4 @@
-const { createContext, useContext } = require('react');
+const { createContext, useContext, useEffect } = require('react');
 
 const ArticlesContext = createContext();
 
