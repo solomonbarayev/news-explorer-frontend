@@ -6,7 +6,6 @@ import AboutAuthor from '../AboutAuthor/AboutAuthor';
 const Main = () => {
   return (
     <>
-      <Header />
       <main className="main">
         <SearchResults />
         <AboutAuthor />

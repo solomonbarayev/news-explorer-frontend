@@ -3,11 +3,7 @@ import './SavedNews.css';
 import Header from '../Header/Header';
 
 const SavedNews = () => {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <div>SavedNews</div>;
 };
 
 export default SavedNews;

@@ -4,12 +4,14 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
 import Main from '../Main/Main';
+import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Switch>
         <Route exact path="/">
           <Main />
