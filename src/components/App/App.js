@@ -7,16 +7,12 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews';
 
-import { useIsHome } from '../../contexts/IsHomeContext';
-
 function App() {
-  const { isHome } = useIsHome();
-
   return (
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <Main isHome={isHome} />
+          <Main />
         </Route>
         <Route path="/saved-news">
           <SavedNews />

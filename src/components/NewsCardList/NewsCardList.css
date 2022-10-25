@@ -1,6 +1,6 @@
 .newsCardList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(218px, 1fr));
   grid-gap: 16px;
   margin: 0 auto;
   margin-block-start: 0;
