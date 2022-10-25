@@ -1,0 +1,6 @@
+/*import normalize*/
+@import url(./vendors/normalize.css);
+@import url(./vendors/fonts/font.css);
+
+@import url(./blocks/body.css);
+@import url(./blocks/section.css);
