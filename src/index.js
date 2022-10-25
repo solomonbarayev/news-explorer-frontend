@@ -4,13 +4,16 @@ import './index.css';
 import App from './components/App/App';
 import { BrowserRouter } from 'react-router-dom';
 import IsHomeContextProvider from './contexts/IsHomeContext';
+import ArticlesContextProvider from './contexts/ArticlesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <IsHomeContextProvider>
-        <App />
+        <ArticlesContextProvider>
+          <App />
+        </ArticlesContextProvider>
       </IsHomeContextProvider>
     </BrowserRouter>
   </React.StrictMode>

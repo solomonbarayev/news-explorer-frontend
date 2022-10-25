@@ -104,18 +104,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1300px) {
-  .nav {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-}
-
 @media screen and (max-width: 1024px) {
-  .nav {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
   .nav__menu-list {
     gap: 50px;
   }

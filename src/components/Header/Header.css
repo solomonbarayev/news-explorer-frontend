@@ -41,16 +41,11 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
-  .header {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .header {
     padding-bottom: 48px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .header__title {
     font-size: 36px;

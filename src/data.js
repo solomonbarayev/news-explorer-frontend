@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   {
     _id: '63558bd777490e884f1c49cd',
     keyword: 'Card 1',
@@ -39,5 +39,3 @@ const data = [
     __v: 0,
   },
 ];
-
-export default data;

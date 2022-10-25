@@ -1,0 +1,16 @@
+.saved-news {
+  background-color: rgba(245, 246, 247, 1);
+  padding: 62px 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .saved-news {
+    padding: 32px 16px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .saved-news {
+    padding: 24px 16px;
+  }
+}

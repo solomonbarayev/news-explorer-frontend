@@ -2,8 +2,8 @@
   padding-top: 80px;
   padding-bottom: 80px;
   background-color: rgba(245, 246, 247, 1);
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .search-results__container {
@@ -36,7 +36,7 @@
 
 @media screen and (max-width: 768px) {
   .search-results {
-    padding: 40px;
+    padding: 40px 16px;
   }
   .search-results__title {
     font-size: 30px;
