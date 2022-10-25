@@ -47,6 +47,20 @@
   text-decoration: none;
   cursor: pointer;
   color: #fff;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.nav__link_active {
+  box-shadow: 0 -2px 0 0 rgb(255, 255, 255) inset;
+  -webkit-box-shadow: 0 -2px 0 0 rgb(255, 255, 255) inset;
+  -moz-box-shadow: 0 -2px 0 0 rgb(255, 255, 255) inset;
+}
+
+.nav__link_active_bg-light {
+  box-shadow: 0 -2px 0 0 rgb(0, 0, 0) inset;
+  -webkit-box-shadow: 0 -2px 0 0 rgb(0, 0, 0) inset;
+  -moz-box-shadow: 0 -2px 0 0 rgb(0, 0, 0) inset;
 }
 
 .nav__link_bg-light {

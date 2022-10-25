@@ -13,11 +13,11 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route exact path="/">
-          <Main />
-        </Route>
         <Route path="/saved-news">
           <SavedNews />
+        </Route>
+        <Route exact path="/">
+          <Main />
         </Route>
       </Switch>
       <Footer />

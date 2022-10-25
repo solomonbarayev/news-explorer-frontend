@@ -1,7 +1,7 @@
 import React from 'react';
 import './Nav.css';
 import logoutIcon from '../../images/logout_icon_black.svg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import blackLogo from '../../images/NewsExplorer_logo_black.svg';
 import whiteLogo from '../../images/NewsExplorer_logo_white.svg';
 import blackBurgerIcon from '../../images/menu_icon_black.svg';
@@ -17,24 +17,31 @@ const Nav = ({ isHome }) => {
       <div className="nav__menu">
         <ul className="nav__menu-list">
           <li className="nav__menu-item">
-            <Link
+            <NavLink
+              exact={true}
               to="/"
-              className={`${
-                isHome ? 'nav__link' : 'nav__link nav__link_bg-light'
+              className={isHome ? 'nav__link' : 'nav__link nav__link_bg-light'}
+              activeClassName={` ${
+                isHome
+                  ? 'nav__link_active'
+                  : 'nav__link_active nav__link_active_bg-light'
               }`}
             >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li className="nav__menu-item">
-            <Link
+            <NavLink
               to="/saved-news"
-              className={`${
-                isHome ? 'nav__link' : 'nav__link nav__link_bg-light'
+              className={isHome ? 'nav__link' : 'nav__link nav__link_bg-light'}
+              activeClassName={` ${
+                isHome
+                  ? 'nav__link_active'
+                  : 'nav__link_active nav__link_active_bg-light'
               }`}
             >
               Saved articles
-            </Link>
+            </NavLink>
           </li>
         </ul>
         <button
