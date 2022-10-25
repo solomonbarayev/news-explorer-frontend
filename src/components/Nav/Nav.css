@@ -1,0 +1,121 @@
+.nav {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  background: transparent;
+  border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_bg-light {
+  color: black;
+}
+
+.nav__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.nav__menu-list {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
+.nav__link {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.nav__link_bg-light {
+  color: rgba(26, 27, 34, 1);
+}
+
+.nav__button {
+  border-radius: 100px;
+  padding: 12px 19px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  cursor: pointer;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.nav__button_bg-light {
+  color: rgba(26, 27, 34, 1);
+  border: 1px solid rgba(26, 27, 34, 1);
+}
+
+.nav__button-icon {
+  width: 17px;
+  height: 17px;
+  display: none;
+}
+
+.nav__hamburger {
+  display: none;
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+  .nav {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .nav {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .nav__menu-list {
+    gap: 50px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .nav__menu {
+    display: none;
+  }
+  .nav__logo {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .nav__hamburger {
+    display: block;
+  }
+}

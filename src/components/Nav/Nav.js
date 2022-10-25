@@ -1,4 +1,5 @@
 import React from 'react';
+import './Nav.css';
 import logoutIcon from '../../images/logout_icon_black.svg';
 import { Link } from 'react-router-dom';
 import blackLogo from '../../images/NewsExplorer_logo_black.svg';
@@ -9,46 +10,49 @@ import closeIcon from '../../images/close_icon.svg';
 
 const Nav = ({ isHome }) => {
   return (
-    <div className="section header__nav-container">
-      <div className="header__logo">
+    <nav className="section nav">
+      <div className="nav__logo">
         <img src={isHome ? whiteLogo : blackLogo} alt="logo" />
       </div>
-      <nav className="header__menu">
-        {/* when you install router, use Link instead  */}
-        <Link
-          to="/"
-          className={`${
-            isHome ? 'header__link' : 'header__link header__link_bg-light'
-          }`}
-        >
-          Home
-        </Link>
-        <Link
-          to="/saved-news"
-          className={`${
-            isHome ? 'header__link' : 'header__link header__link_bg-light'
-          }`}
-        >
-          Saved articles
-        </Link>
+      <div className="nav__menu">
+        <ul className="nav__menu-list">
+          <li className="nav__menu-item">
+            <Link
+              to="/"
+              className={`${
+                isHome ? 'nav__link' : 'nav__link nav__link_bg-light'
+              }`}
+            >
+              Home
+            </Link>
+          </li>
+          <li className="nav__menu-item">
+            <Link
+              to="/saved-news"
+              className={`${
+                isHome ? 'nav__link' : 'nav__link nav__link_bg-light'
+              }`}
+            >
+              Saved articles
+            </Link>
+          </li>
+        </ul>
         <button
           className={`${
-            isHome
-              ? 'header__button'
-              : 'header__button header__button_bg-light '
+            isHome ? 'nav__button' : 'nav__button nav__button_bg-light '
           }`}
         >
-          <span className="header__button-text">Sign in</span>
-          <img src={logoutIcon} alt="logout" className="header__button-icon" />
+          <span className="nav__button-text">Sign in</span>
+          <img src={logoutIcon} alt="logout" className="nav__button-icon" />
         </button>
-      </nav>
+      </div>
       <button
-        className="header__hamburger"
+        className="nav__hamburger"
         style={{
           backgroundImage: `url(${isHome ? whiteBurgerIcon : blackBurgerIcon})`,
         }}
       ></button>
-    </div>
+    </nav>
   );
 };
 

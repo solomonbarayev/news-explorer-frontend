@@ -5,9 +5,6 @@ import fbIcon from '../../images/facebook_icon.svg';
 import ghIcon from '../../images/github_icon.svg';
 
 const Footer = () => {
-  //get current year
-  const year = new Date().getFullYear();
-
   return (
     <footer className="footer">
       <div className="section footer__container">
