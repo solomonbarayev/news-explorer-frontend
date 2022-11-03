@@ -107,6 +107,11 @@
   color: rgba(47, 113, 229, 1);
   background: transparent;
   border: none;
+  cursor: pointer;
+}
+
+.popup__redirect-button:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 524px) {

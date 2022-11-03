@@ -91,7 +91,13 @@
 .nav__button-icon {
   width: 17px;
   height: 17px;
-  display: none;
+  background-position: center;
+  background-size: 100% 100%;
+  background-image: url(../../images/logout_icon_white.svg);
+}
+
+.nav__button-icon_bg_light {
+  background-image: url(../../images/logout_icon_black.svg);
 }
 
 .nav__hamburger {

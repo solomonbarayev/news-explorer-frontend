@@ -26,12 +26,17 @@
 .search-results__button {
   font-weight: 500;
   padding: 20px 100px;
-  background-color: #e8e8e8;
+  background-color: #fff;
   border-radius: 80px;
   border: none;
   cursor: pointer;
   text-align: center;
   max-width: fit-content;
+  transition: all 0.45s ease-out;
+}
+
+.search-results__button:hover {
+  background-color: #e8e8e8;
 }
 
 @media screen and (max-width: 768px) {

@@ -6,18 +6,21 @@ import { BrowserRouter } from 'react-router-dom';
 import IsHomeContextProvider from './contexts/IsHomeContext';
 import ArticlesContextProvider from './contexts/ArticlesContext';
 import PopupContextProvider from './contexts/PopupsContext';
+import AuthContextProvider from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <PopupContextProvider>
-        <IsHomeContextProvider>
-          <ArticlesContextProvider>
-            <App />
-          </ArticlesContextProvider>
-        </IsHomeContextProvider>
-      </PopupContextProvider>
+      <AuthContextProvider>
+        <PopupContextProvider>
+          <IsHomeContextProvider>
+            <ArticlesContextProvider>
+              <App />
+            </ArticlesContextProvider>
+          </IsHomeContextProvider>
+        </PopupContextProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

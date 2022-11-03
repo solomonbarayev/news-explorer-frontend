@@ -18,6 +18,14 @@ const PopupProvider = ({ children }) => {
       Object.keys(popupsState).every((key) => (popupsState[key] = false))
     );
 
+  // const closeAllPopups = () => {
+  //   setPopupsState({
+  //     signin: false,
+  //     signup: false,
+  //     success: false,
+  //   });
+  // };
+
   return (
     <PopupContext.Provider
       value={{ popupsState, setPopupsState, openPopup, closeAllPopups }}>

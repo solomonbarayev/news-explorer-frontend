@@ -1,24 +1,25 @@
 import './App.css';
-
-//import react router dom
-import { Switch, Route } from 'react-router-dom';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Main from '../Main/Main';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews';
 import Popups from '../Popups/Popups';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/saved-news">
+        <ProtectedRoute path="/saved-news">
           <SavedNews />
-        </Route>
+        </ProtectedRoute>
         <Route exact path="/">
           <Main />
+        </Route>
+        <Route path="*">
+          <Redirect to="/" />
         </Route>
       </Switch>
       <Footer />
@@ -29,12 +30,3 @@ function App() {
 }
 
 export default App;
-
-// const [isHome, setIsHome] = useState(true);
-// const location = useLocation();
-
-// useEffect(() => {
-//   if (location.pathname !== '/') {
-//     setIsHome(false);
-//   }
-// }, [location]);
