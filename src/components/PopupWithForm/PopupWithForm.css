@@ -82,16 +82,13 @@
   transition: background ease-out 0.3s;
 }
 
-.popup__button:hover {
-  background: rgba(0, 0, 0, 0.8);
+.popup__submit-button:hover {
+  background: rgba(52, 126, 255, 1);
 }
 
-.popup__button_disabled,
-.popup__button_disabled:hover {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  color: rgba(0, 0, 0, 0.2);
-  cursor: default;
+.popup__submit-button_disabled {
+  background: rgba(230, 232, 235, 1);
+  color: rgba(182, 188, 191, 1);
 }
 
 .popup__button_type_tooltip {
