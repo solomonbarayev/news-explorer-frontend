@@ -9,10 +9,6 @@ const SavedNewsHeader = () => {
   const keywords = data.map((card) => card.keyword);
   const uniqueKeywords = [...new Set(keywords)];
 
-  // if uniqueKeywords has more than 3 then show first two and then "and 3 more"
-
-  console.log(uniqueKeywords);
-
   return (
     <div className="news-header">
       <h1 className="news-header__title">Saved articles</h1>

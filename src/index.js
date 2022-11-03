@@ -5,16 +5,19 @@ import App from './components/App/App';
 import { BrowserRouter } from 'react-router-dom';
 import IsHomeContextProvider from './contexts/IsHomeContext';
 import ArticlesContextProvider from './contexts/ArticlesContext';
+import PopupContextProvider from './contexts/PopupsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <IsHomeContextProvider>
-        <ArticlesContextProvider>
-          <App />
-        </ArticlesContextProvider>
-      </IsHomeContextProvider>
+      <PopupContextProvider>
+        <IsHomeContextProvider>
+          <ArticlesContextProvider>
+            <App />
+          </ArticlesContextProvider>
+        </IsHomeContextProvider>
+      </PopupContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

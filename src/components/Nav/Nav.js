@@ -7,8 +7,11 @@ import whiteLogo from '../../images/NewsExplorer_logo_white.svg';
 import blackBurgerIcon from '../../images/menu_icon_black.svg';
 import whiteBurgerIcon from '../../images/menu_icon_white.svg';
 import closeIcon from '../../images/close_icon.svg';
+import { usePopup } from '../../contexts/PopupsContext';
 
 const Nav = ({ isHome }) => {
+  const { openPopup } = usePopup();
+
   return (
     <nav className="section nav">
       <div className="nav__logo">
@@ -25,8 +28,7 @@ const Nav = ({ isHome }) => {
                 isHome
                   ? 'nav__link_active'
                   : 'nav__link_active nav__link_active_bg-light'
-              }`}
-            >
+              }`}>
               Home
             </NavLink>
           </li>
@@ -38,8 +40,7 @@ const Nav = ({ isHome }) => {
                 isHome
                   ? 'nav__link_active'
                   : 'nav__link_active nav__link_active_bg-light'
-              }`}
-            >
+              }`}>
               Saved articles
             </NavLink>
           </li>
@@ -48,7 +49,7 @@ const Nav = ({ isHome }) => {
           className={`${
             isHome ? 'nav__button' : 'nav__button nav__button_bg-light '
           }`}
-        >
+          onClick={() => openPopup('signin')}>
           <span className="nav__button-text">Sign in</span>
           <img src={logoutIcon} alt="logout" className="nav__button-icon" />
         </button>
@@ -57,8 +58,7 @@ const Nav = ({ isHome }) => {
         className="nav__hamburger"
         style={{
           backgroundImage: `url(${isHome ? whiteBurgerIcon : blackBurgerIcon})`,
-        }}
-      ></button>
+        }}></button>
     </nav>
   );
 };

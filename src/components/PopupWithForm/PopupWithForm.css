@@ -1,0 +1,120 @@
+.popup__title {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.popup__form {
+  max-width: 358px;
+  width: 358px;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+.popup__fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  gap: 31px;
+}
+
+.popup__input-container {
+  position: relative;
+}
+.popup__label {
+  line-height: 14px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(47, 113, 229, 1);
+}
+
+.popup__input {
+  padding: 13px 0px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
+}
+
+.popup__input::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.popup__input:focus {
+  outline: none;
+}
+
+.popup__input-error {
+  position: absolute;
+  bottom: -20px;
+  font-size: 12px;
+  padding-top: 4px;
+  min-height: 16px;
+  color: #ff0000;
+}
+
+.popup__input_type_error {
+  border-bottom: solid #ff0000 1px;
+}
+
+.popup__input-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.popup__submit-button {
+  background: rgba(47, 113, 229, 1);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 30px;
+  line-height: 1.22;
+  padding: 18.49px;
+  cursor: pointer;
+  transition: background ease-out 0.3s;
+}
+
+.popup__button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.popup__button_disabled,
+.popup__button_disabled:hover {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  cursor: default;
+}
+
+.popup__button_type_tooltip {
+  display: none;
+}
+
+.popup__redirect-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.popup__redirect-button {
+  color: rgba(47, 113, 229, 1);
+  background: transparent;
+  border: none;
+}
+
+@media screen and (max-width: 524px) {
+  .popup {
+    width: 100%;
+    max-width: none;
+  }
+}

@@ -38,17 +38,4 @@ export const data = [
     owner: '535586c31ec32fed59ba7e44',
     __v: 0,
   },
-  {
-    _id: '63565f745111d9089412c7dc',
-    keyword: 'Card 3',
-    title: 'testing card 3',
-    text: "testing text hows it going writing random text so there is material to see on the page. Soon this will become an api call and I won't have to write any of this by hand",
-    date: 'December 4, 2022',
-    source: 'some source',
-    link: 'https://images.unsplash.com/photo-1494376863055-e18dd6c6841a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80',
-    image:
-      'https://images.unsplash.com/photo-1494376863055-e18dd6c6841a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80',
-    owner: '535586c31ec32fed59ba7e44',
-    __v: 0,
-  },
 ];
