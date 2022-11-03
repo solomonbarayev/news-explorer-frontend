@@ -64,14 +64,22 @@
 
 @media screen and (max-width: 524px) {
   .popup {
-    padding-left: 19px;
-    padding-right: 19px;
+    /* padding-left: 19px; */
+    /* padding-right: 19px; */
     box-sizing: border-box;
+    bottom: 0;
+    left: 0;
   }
   .popup__container {
     width: 100%;
-    gap: 67px;
+    gap: 18px;
+    justify-content: flex-start;
     padding: 25px 22px;
+    bottom: 0;
+    position: absolute;
+    height: 88vh;
+    box-sizing: border-box;
+    border-radius: 10px 10px 0 0;
   }
 
   .popup__close-button {

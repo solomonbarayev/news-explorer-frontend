@@ -1,7 +1,5 @@
 import React from 'react';
 import './NewsCard.css';
-import saveIcon from '../../images/save_icon.svg';
-import trashIcon from '../../images/trash_icon.svg';
 import { useIsHome } from '../../contexts/IsHomeContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { usePopup } from '../../contexts/PopupsContext';
