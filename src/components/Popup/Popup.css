@@ -33,6 +33,14 @@
   padding: 34px;
   border-radius: 10px;
   position: relative;
+  max-width: 430px;
+  width: 100%;
+}
+
+.popup__container_type_success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .popup__close-button {

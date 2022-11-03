@@ -1,8 +1,17 @@
 import React from 'react';
 import './PopupWithForm.css';
 import Popup from '../Popup/Popup';
+import { usePopup } from '../../contexts/PopupsContext';
 
 const PopupWithForm = (props) => {
+  const popupContext = usePopup();
+
+  const handleRedirect = () => {
+    let popupToOpen = props.name === 'signin' ? 'signup' : 'signin';
+    popupContext.closeAllPopups();
+    popupContext.openPopup(popupToOpen);
+  };
+
   return (
     <Popup isOpen={props.isOpen} name={props.name}>
       <h2 className="popup__title">{props.title}</h2>
@@ -22,7 +31,10 @@ const PopupWithForm = (props) => {
       </form>
       <div className="popup__redirect-container">
         or{' '}
-        <button className="popup__redirect-button" type="button">
+        <button
+          className="popup__redirect-button"
+          type="button"
+          onClick={handleRedirect}>
           {props.redirectText}
         </button>
       </div>

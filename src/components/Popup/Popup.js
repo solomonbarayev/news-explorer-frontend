@@ -5,20 +5,18 @@ import { usePopup } from '../../contexts/PopupsContext';
 const Popup = ({ isOpen, name, children }) => {
   const popupsContext = usePopup();
 
-  const { closeAllPopups } = popupsContext;
-
   useEffect(() => {
     if (!isOpen) return;
 
     function handleEscClose(evt) {
       if (evt.key === 'Escape') {
-        closeAllPopups();
+        popupsContext.closeAllPopups();
       }
     }
 
     function handleOverlayClickClose(evt) {
       if (evt.target.classList.contains('popup_opened')) {
-        closeAllPopups();
+        popupsContext.closeAllPopups();
       }
     }
 
@@ -29,7 +27,7 @@ const Popup = ({ isOpen, name, children }) => {
       document.removeEventListener('keydown', handleEscClose);
       document.removeEventListener('click', handleOverlayClickClose);
     };
-  }, [isOpen, closeAllPopups]);
+  }, [isOpen, popupsContext.closeAllPopups]);
 
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''} popup_type_${name}`}>
@@ -38,7 +36,7 @@ const Popup = ({ isOpen, name, children }) => {
         <button
           className={`popup__close-button ${`popup__close-button_type_${name}`}`}
           type="button"
-          onClick={closeAllPopups}
+          onClick={popupsContext.closeAllPopups}
         />
       </div>
     </div>

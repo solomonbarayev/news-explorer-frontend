@@ -10,16 +10,13 @@ const PopupProvider = ({ children }) => {
   });
 
   const openPopup = (popupName) => {
-    setPopupsState({ ...popupsState, [popupName]: true });
+    setPopupsState({ [popupName]: true });
   };
 
-  const closeAllPopups = () => {
-    setPopupsState({
-      signin: false,
-      signup: false,
-      success: false,
-    });
-  };
+  const closeAllPopups = () =>
+    setPopupsState(
+      Object.keys(popupsState).every((key) => (popupsState[key] = false))
+    );
 
   return (
     <PopupContext.Provider

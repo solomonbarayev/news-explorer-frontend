@@ -7,7 +7,7 @@ import Main from '../Main/Main';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews';
-import Signin from '../Signin/Signin';
+import Popups from '../Popups/Popups';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       </Switch>
       <Footer />
 
-      <Signin />
+      <Popups />
     </div>
   );
 }
