@@ -18,10 +18,18 @@ const Nav = ({ isHome }) => {
     !loggedIn ? openPopup('signin') : handleLogout();
   };
 
+  const handleHamburgerClick = () => {
+    openPopup('mobile');
+  };
+
   return (
     <nav className="section nav">
-      <div className="nav__logo">
-        <img src={isHome ? whiteLogo : blackLogo} alt="logo" />
+      <div className="nav__logo-container">
+        <img
+          src={isHome ? whiteLogo : blackLogo}
+          alt="logo"
+          className="nav__logo"
+        />
       </div>
       <div className="nav__menu">
         <ul className="nav__menu-list">
@@ -72,6 +80,7 @@ const Nav = ({ isHome }) => {
         </button>
       </div>
       <button
+        onClick={handleHamburgerClick}
         className="nav__hamburger"
         style={{
           backgroundImage: `url(${isHome ? whiteBurgerIcon : blackBurgerIcon})`,

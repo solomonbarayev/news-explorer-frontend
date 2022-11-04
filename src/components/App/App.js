@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+
       <Switch>
         <ProtectedRoute path="/saved-news">
           <SavedNews />
@@ -22,6 +23,7 @@ function App() {
           <Redirect to="/" />
         </Route>
       </Switch>
+
       <Footer />
 
       <Popups />

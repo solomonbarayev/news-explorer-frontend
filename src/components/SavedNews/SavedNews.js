@@ -5,11 +5,11 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 
 const SavedNews = () => {
   return (
-    <section className="saved-news">
+    <main className="saved-news">
       <div className="section saved-news__container">
         <NewsCardList />
       </div>
-    </section>
+    </main>
   );
 };
 

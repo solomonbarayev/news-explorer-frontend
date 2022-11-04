@@ -16,10 +16,15 @@
   color: black;
 }
 
-.nav__logo {
+.nav__logo-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 137px;
+}
+
+.nav__logo {
+  width: 100%;
 }
 
 .nav__menu {
@@ -117,12 +122,17 @@
 }
 
 @media screen and (max-width: 650px) {
+  .nav {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   .nav__menu {
     display: none;
   }
-  .nav__logo {
+  .nav__logo-container {
     padding-top: 16px;
     padding-bottom: 16px;
+    max-width: 115px;
   }
   .nav__hamburger {
     display: block;

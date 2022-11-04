@@ -7,6 +7,7 @@ const PopupProvider = ({ children }) => {
     signin: false,
     signup: false,
     success: false,
+    mobile: false,
   });
 
   const openPopup = (popupName) => {
@@ -17,14 +18,6 @@ const PopupProvider = ({ children }) => {
     setPopupsState(
       Object.keys(popupsState).every((key) => (popupsState[key] = false))
     );
-
-  // const closeAllPopups = () => {
-  //   setPopupsState({
-  //     signin: false,
-  //     signup: false,
-  //     success: false,
-  //   });
-  // };
 
   return (
     <PopupContext.Provider
