@@ -22,7 +22,9 @@ const MobileMenu = () => {
 
   return (
     <div
-      className={`mobile-menu ${popupsState.mobile && 'mobile-menu_opened'}`}>
+      className={`${
+        popupsState.mobile ? 'mobile-menu mobile-menu_opened' : 'mobile-menu'
+      }`}>
       <div className="mobile-menu__overlay">
         <div className="mobile-menu__container">
           <div className="mobile-menu__top-bar">
