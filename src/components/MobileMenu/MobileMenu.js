@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './MobileMenu.css';
 import logo from '../../images/NewsExplorer_logo_white.svg';
 import logOutIcon from '../../images/logout_icon_white.svg';
@@ -10,6 +10,7 @@ import { usePopup } from '../../contexts/PopupsContext';
 const MobileMenu = () => {
   const { loggedIn, user, handleLogout } = useAuth();
   const { closeAllPopups, popupsState, openPopup } = usePopup();
+  const { mobile } = popupsState;
 
   const handleAuthButtonClick = () => {
     if (loggedIn) {
@@ -20,10 +21,34 @@ const MobileMenu = () => {
     }
   };
 
+  useEffect(() => {
+    if (!mobile) return;
+
+    function handleEscClose(evt) {
+      if (evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+
+    function handleOverlayClickClose(evt) {
+      if (evt.target.classList.contains('mobile-menu_opened')) {
+        closeAllPopups();
+      }
+    }
+
+    document.addEventListener('keydown', handleEscClose);
+    document.addEventListener('click', handleOverlayClickClose);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscClose);
+      document.removeEventListener('click', handleOverlayClickClose);
+    };
+  }, [mobile, closeAllPopups]);
+
   return (
     <div
       className={`${
-        popupsState.mobile ? 'mobile-menu mobile-menu_opened' : 'mobile-menu'
+        mobile ? 'mobile-menu mobile-menu_opened' : 'mobile-menu'
       }`}>
       <div className="mobile-menu__container">
         <div className="mobile-menu__top-bar">
