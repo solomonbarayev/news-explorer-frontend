@@ -54,6 +54,11 @@
   color: #fff;
   padding-bottom: 20px;
   padding-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav__link:hover {
+  color: #dadada;
 }
 
 .nav__link_active {
@@ -72,6 +77,10 @@
   color: rgba(26, 27, 34, 1);
 }
 
+.nav__link_bg-light:hover {
+  color: rgb(130, 130, 130);
+}
+
 .nav__button {
   border-radius: 100px;
   padding: 12px 19px;
@@ -86,6 +95,11 @@
   cursor: pointer;
   color: #fff;
   border: 1px solid #fff;
+  transition: all 0.3s ease;
+}
+
+.nav__button:hover {
+  opacity: 0.7;
 }
 
 .nav__button_bg-light {
