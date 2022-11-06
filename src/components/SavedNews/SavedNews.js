@@ -1,6 +1,5 @@
 import React from 'react';
 import './SavedNews.css';
-import Header from '../Header/Header';
 import NewsCardList from '../NewsCardList/NewsCardList';
 
 const SavedNews = () => {

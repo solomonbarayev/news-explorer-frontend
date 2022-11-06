@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   font-size: 24px;
-  line-height: 1.2;
+  line-height: 28px;
+  font-family: 'Roboto', Arial, sans-serif;
   font-weight: 900;
 }
 
@@ -11,7 +12,7 @@
   /* width: 358px; */
   display: flex;
   flex-direction: column;
-  gap: 38px;
+  gap: 39px;
   font-size: 14px;
   line-height: 1.21;
 }
@@ -43,6 +44,8 @@
 }
 
 .popup__input::placeholder {
+  font-size: 14px;
+  line-height: 17px;
   color: rgba(0, 0, 0, 0.2);
 }
 
@@ -76,8 +79,10 @@
   color: #fff;
   font-size: 18px;
   border-radius: 30px;
-  line-height: 1.22;
-  padding: 18.49px;
+  line-height: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px;
   cursor: pointer;
   transition: background ease-out 0.3s;
 }

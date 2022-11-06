@@ -1,19 +1,23 @@
 .nav {
   width: 100%;
   margin: 0 auto;
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding-top: 14px;
+  padding-bottom: 12px;
   background: transparent;
   border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
-  box-sizing: border-box;
   color: white;
+}
+
+.nav__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .nav_bg-light {
   color: black;
+  border-bottom: 1px rgba(209, 210, 214, 1) solid;
 }
 
 .nav__logo-container {
@@ -30,7 +34,7 @@
 .nav__menu {
   display: flex;
   align-items: center;
-  gap: 70px;
+  gap: 64px;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-decoration: none;
@@ -39,7 +43,7 @@
 .nav__menu-list {
   display: flex;
   align-items: center;
-  gap: 70px;
+  gap: 76px;
   list-style: none;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -52,8 +56,8 @@
   text-decoration: none;
   cursor: pointer;
   color: #fff;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding-bottom: 24px;
+  padding-top: 24px;
   transition: all 0.3s ease;
 }
 
@@ -83,7 +87,6 @@
 
 .nav__button {
   border-radius: 100px;
-  padding: 12px 19px;
   background: transparent;
   display: flex;
   align-items: center;
@@ -96,6 +99,8 @@
   color: #fff;
   border: 1px solid #fff;
   transition: all 0.3s ease;
+  line-height: 24px;
+  padding: 8px 15px;
 }
 
 .nav__button:hover {
@@ -129,9 +134,23 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1300px) {
+  .nav__container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .nav__menu-list {
     gap: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav__container {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 
@@ -144,11 +163,18 @@
     display: none;
   }
   .nav__logo-container {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 19.5px;
+    padding-bottom: 19.5px;
     max-width: 115px;
   }
   .nav__hamburger {
     display: block;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .nav__container {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

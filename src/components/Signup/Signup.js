@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { usePopup } from '../../contexts/PopupsContext';
 
@@ -36,7 +35,6 @@ const Signup = () => {
             placeholder="Enter email"
             onChange={handleChange}
             value={formData.email || ''}
-            required
           />
           <span className="popup__input-error"></span>
         </div>
@@ -49,7 +47,6 @@ const Signup = () => {
             placeholder="Enter password"
             onChange={handleChange}
             value={formData.password || ''}
-            required
           />
           <span className="popup__input-error"></span>
         </div>
@@ -62,7 +59,6 @@ const Signup = () => {
             placeholder="Enter username"
             onChange={handleChange}
             value={formData.username || ''}
-            required
           />
           <span className="popup__input-error"></span>
         </div>

@@ -36,7 +36,6 @@ const Signin = () => {
             placeholder="Enter email"
             onChange={handleChange}
             value={formData.email || ''}
-            required
           />
           <span className="popup__input-error"></span>
         </div>
@@ -49,7 +48,6 @@ const Signin = () => {
             placeholder="Enter password"
             onChange={handleChange}
             value={formData.password || ''}
-            required
           />
           <span className="popup__input-error"></span>
         </div>

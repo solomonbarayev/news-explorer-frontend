@@ -7,9 +7,9 @@ const NewsCardList = () => {
   const { data } = useArticles();
 
   return (
-    <ul className="newsCardList">
+    <ul className="news-card-list">
       {data.map((card) => (
-        <li key={card._id}>
+        <li key={card._id} className="news-card-list__list-item">
           <NewsCard card={card} />
         </li>
       ))}

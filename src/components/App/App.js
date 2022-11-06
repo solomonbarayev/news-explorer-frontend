@@ -9,7 +9,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Header />
 
       <Switch>

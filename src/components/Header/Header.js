@@ -13,7 +13,7 @@ const Header = () => {
   const { isHome } = useIsHome();
   return (
     <header className={`${isHome ? 'header' : 'header header_bg-light'}`}>
-      <div className="section header__container">
+      <div className="header__container">
         <Nav isHome={isHome} />
 
         {isHome ? <HomeHeader /> : <SavedNewsHeader />}

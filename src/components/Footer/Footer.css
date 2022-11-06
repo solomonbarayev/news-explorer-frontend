@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 32px 20px;
+  padding: 32px 40px;
   box-sizing: border-box;
 }
 
@@ -49,14 +49,13 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0;
-  align-items: center;
 }
 
 .footer__icon {
   display: block;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767.98px) {
   .footer__container {
     flex-direction: column;
   }
