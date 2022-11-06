@@ -1,0 +1,28 @@
+.not-found {
+  background-color: rgba(245, 246, 247, 1);
+  padding: 80px 16px;
+}
+
+.not-found__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.not-found__title {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin-top: 16px;
+  font-family: 'Roboto-slab', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.not-found__text {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  color: rgba(182, 188, 191, 1);
+}
