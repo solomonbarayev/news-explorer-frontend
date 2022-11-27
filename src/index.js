@@ -7,20 +7,23 @@ import IsHomeContextProvider from './contexts/IsHomeContext';
 import ArticlesContextProvider from './contexts/ArticlesContext';
 import PopupContextProvider from './contexts/PopupsContext';
 import AuthContextProvider from './contexts/AuthContext';
+import UserContextProvider from './contexts/UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthContextProvider>
+      <UserContextProvider>
         <PopupContextProvider>
-          <IsHomeContextProvider>
-            <ArticlesContextProvider>
-              <App />
-            </ArticlesContextProvider>
-          </IsHomeContextProvider>
+          <AuthContextProvider>
+            <IsHomeContextProvider>
+              <ArticlesContextProvider>
+                <App />
+              </ArticlesContextProvider>
+            </IsHomeContextProvider>
+          </AuthContextProvider>
         </PopupContextProvider>
-      </AuthContextProvider>
+      </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { usePopup } from '../../contexts/PopupsContext';
+import api from '../../utils/MainApi';
 
 const Signup = () => {
   const popupContext = usePopup();
@@ -14,7 +15,16 @@ const Signup = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(formData);
+    api
+      .register(formData)
+      .then((res) => {
+        console.log(res);
+        popupContext.closeAllPopups();
+        popupContext.openPopup('success');
+      })
+      .catch((err) => {
+        console.log(err.validation);
+      });
   };
 
   return (
@@ -54,11 +64,11 @@ const Signup = () => {
           <label className="popup__label">Username</label>
           <input
             className="popup__input popup__input_type_username"
-            type="username"
-            name="username"
+            type="name"
+            name="name"
             placeholder="Enter username"
             onChange={handleChange}
-            value={formData.username || ''}
+            value={formData.name || ''}
           />
           <span className="popup__input-error"></span>
         </div>

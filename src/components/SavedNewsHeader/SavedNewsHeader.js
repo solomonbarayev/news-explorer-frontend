@@ -3,29 +3,56 @@ import './SavedNewsHeader.css';
 import { useArticles } from '../../contexts/ArticlesContext';
 
 const SavedNewsHeader = () => {
-  const { data } = useArticles();
+  const { savedArticles } = useArticles();
 
-  //find unique keywords
-  const keywords = data.map((card) => card.keyword);
-  const uniqueKeywords = [...new Set(keywords)];
+  const [uniqueKeywordsByPopularity, setUniqueKeywordsByPopularity] =
+    React.useState([]);
+
+  function findKeywordsByPopularity(keywords) {
+    return keywords.reduce((acc, keyword) => {
+      acc[keyword] ? (acc[keyword] += 1) : (acc[keyword] = 1);
+      return acc;
+    }, {});
+  }
+
+  const findUniqueKeywords = () => {
+    const keywords = savedArticles.map((article) => article.keyword);
+    const keywordsByPopularity = findKeywordsByPopularity(keywords);
+
+    //sort keywords by popularity
+    const sortedKeywords = Object.entries(keywordsByPopularity).sort(
+      (a, b) => b[1] - a[1]
+    );
+
+    //get unique keywords
+    const presortedUniqueKeywords = sortedKeywords.map((keyword) => keyword[0]);
+
+    setUniqueKeywordsByPopularity(presortedUniqueKeywords);
+  };
+
+  React.useEffect(() => {
+    findUniqueKeywords();
+  }, [savedArticles]);
 
   return (
-    <div className="news-header">
+    <div className="section news-header">
       <h1 className="news-header__title">Saved articles</h1>
       <p className="news-header__subtitle">
-        You have {data.length} saved articles
+        You have {savedArticles.length} saved articles
       </p>
-      <p className="news-header__keywords">
-        By keywords:{' '}
-        <span className="news-header__keywords_bold">
-          {uniqueKeywords.length <= 2
-            ? uniqueKeywords.join(', ')
-            : uniqueKeywords.slice(0, 2).join(', ') +
-              ' and ' +
-              (uniqueKeywords.length - 2) +
-              ' more'}
-        </span>
-      </p>
+      {savedArticles.length >= 1 && (
+        <p className="news-header__keywords">
+          By keywords:{' '}
+          <span className="news-header__keywords_bold">
+            {uniqueKeywordsByPopularity.length <= 2
+              ? uniqueKeywordsByPopularity.join(', ')
+              : uniqueKeywordsByPopularity.slice(0, 2).join(', ') +
+                ' and ' +
+                (uniqueKeywordsByPopularity.length - 2) +
+                ' more'}
+          </span>
+        </p>
+      )}
     </div>
   );
 };

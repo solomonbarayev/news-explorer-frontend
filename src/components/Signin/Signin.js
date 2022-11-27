@@ -2,9 +2,11 @@ import React from 'react';
 import './Signin.css';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { usePopup } from '../../contexts/PopupsContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Signin = () => {
   const popupContext = usePopup();
+  const { handleLogin } = useAuth();
 
   const [formData, setFormData] = React.useState({});
 
@@ -15,7 +17,8 @@ const Signin = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(formData);
+    handleLogin(formData);
+    popupContext.closeAllPopups();
   };
 
   return (
