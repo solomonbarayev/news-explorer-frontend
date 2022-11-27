@@ -76,6 +76,16 @@ const NewsCard = ({ card }) => {
     }
   }, [card]);
 
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    const options = {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    };
+    return newDate.toLocaleDateString('en-US', options);
+  };
+
   return (
     <a
       href={formattedCard.link}
@@ -93,7 +103,7 @@ const NewsCard = ({ card }) => {
             })`,
           }}></div>
         <div className="news-card__text-container">
-          <p className="news-card__date">{formattedCard.date}</p>
+          <p className="news-card__date">{formatDate(formattedCard.date)}</p>
           <h3 className="news-card__title">{formattedCard.title}</h3>
           <p className="news-card__text">{formattedCard.text}</p>
           <p className="news-card__source">{formattedCard.source}</p>

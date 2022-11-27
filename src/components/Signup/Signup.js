@@ -1,30 +1,26 @@
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { usePopup } from '../../contexts/PopupsContext';
-import api from '../../utils/MainApi';
+import mainApi from '../../utils/MainApi';
+import { useAuth } from '../../contexts/AuthContext';
+import useFormWithValidation from '../../hooks/useForm';
 
 const Signup = () => {
   const popupContext = usePopup();
+  const { handleRegister, authError } = useAuth();
 
-  const [formData, setFormData] = React.useState({});
+  // const handleChange = (evt) => {
+  //   const { name, value } = evt.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
 
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    api
-      .register(formData)
-      .then((res) => {
-        console.log(res);
-        popupContext.closeAllPopups();
-        popupContext.openPopup('success');
-      })
-      .catch((err) => {
-        console.log(err.validation);
-      });
+    handleRegister(values);
+    resetForm();
   };
 
   return (
@@ -34,7 +30,9 @@ const Signup = () => {
       buttonText="Sign up"
       redirectText="Sign in"
       onSubmit={handleSubmit}
-      isOpen={popupContext.popupsState.signup}>
+      isOpen={popupContext.popupsState.signup}
+      isValid={isValid}
+      authError={authError}>
       <fieldset className="popup__fieldset">
         <div className="popup__input-container">
           <label className="popup__label">Email</label>
@@ -44,9 +42,9 @@ const Signup = () => {
             name="email"
             placeholder="Enter email"
             onChange={handleChange}
-            value={formData.email || ''}
+            value={values.email || ''}
           />
-          <span className="popup__input-error"></span>
+          <span className="popup__input-error">{errors.email}</span>
         </div>
         <div className="popup__input-container">
           <label className="popup__label">Password</label>
@@ -56,9 +54,9 @@ const Signup = () => {
             name="password"
             placeholder="Enter password"
             onChange={handleChange}
-            value={formData.password || ''}
+            value={values.password || ''}
           />
-          <span className="popup__input-error"></span>
+          <span className="popup__input-error">{errors.password}</span>
         </div>
         <div className="popup__input-container">
           <label className="popup__label">Username</label>
@@ -68,9 +66,9 @@ const Signup = () => {
             name="name"
             placeholder="Enter username"
             onChange={handleChange}
-            value={formData.name || ''}
+            value={values.name || ''}
           />
-          <span className="popup__input-error"></span>
+          <span className="popup__input-error">{errors.name}</span>
         </div>
       </fieldset>
     </PopupWithForm>

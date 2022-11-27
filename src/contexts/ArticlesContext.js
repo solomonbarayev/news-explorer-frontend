@@ -10,7 +10,7 @@ const ArticlesContext = createContext();
 
 // make a provider
 const ArticlesContextProvider = ({ children }) => {
-  const { token } = useAuth();
+  const { token, loggedIn } = useAuth();
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [articleIndex, setArticleIndex] = useState(3);
@@ -22,6 +22,9 @@ const ArticlesContextProvider = ({ children }) => {
   const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
+    if (!loggedIn) {
+      return;
+    }
     mainApi.getSavedArticles(token).then((res) => {
       setSavedArticles(res);
     });

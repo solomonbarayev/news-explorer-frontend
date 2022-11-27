@@ -25,6 +25,10 @@
   gap: 31px;
 }
 
+.popup__fieldset_type_submit-area {
+  position: relative;
+}
+
 .popup__input-container {
   position: relative;
 }
@@ -60,6 +64,13 @@
   padding-top: 4px;
   min-height: 16px;
   color: #ff0000;
+}
+
+.popup__input-error_type_auth {
+  top: -29px;
+  /*horizontal center*/
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .popup__input_type_error {
