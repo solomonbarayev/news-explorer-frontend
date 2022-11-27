@@ -7,7 +7,7 @@ import useFormWithValidation from '../../hooks/useForm';
 
 const Signin = () => {
   const popupContext = usePopup();
-  const { handleLogin, authError, setAuthError } = useAuth();
+  const { handleLogin, authError } = useAuth();
 
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();

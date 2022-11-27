@@ -1,7 +1,6 @@
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { usePopup } from '../../contexts/PopupsContext';
-import mainApi from '../../utils/MainApi';
 import { useAuth } from '../../contexts/AuthContext';
 import useFormWithValidation from '../../hooks/useForm';
 

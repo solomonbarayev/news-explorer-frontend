@@ -23,12 +23,13 @@ const ArticlesContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (!loggedIn) {
+      setSavedArticles([]);
       return;
     }
     mainApi.getSavedArticles(token).then((res) => {
       setSavedArticles(res);
     });
-  }, []);
+  }, [loggedIn, token]);
 
   useEffect(() => {
     setArticlesToShow(articles.slice(0, articleIndex));

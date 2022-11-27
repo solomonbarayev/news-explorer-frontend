@@ -63,28 +63,27 @@ const AuthProvider = ({ children }) => {
     history.push('/');
   };
 
-  const checkToken = () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      mainApi
-        .getUserInfo(token)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setCurrentUser(res);
-            setToken(token);
-            history.push('/');
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
   useEffect(() => {
+    const checkToken = () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        mainApi
+          .getUserInfo(token)
+          .then((res) => {
+            if (res) {
+              setLoggedIn(true);
+              setCurrentUser(res);
+              setToken(token);
+              history.push('/');
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    };
     checkToken();
-  }, []);
+  }, [setCurrentUser, history]);
 
   return (
     <AuthContext.Provider
