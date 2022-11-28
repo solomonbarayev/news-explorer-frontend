@@ -1,12 +1,9 @@
 import mainApi from '../utils/MainApi';
 import newsApi from '../utils/NewsApi';
-// import { useAuth } from './AuthContext';
 import { useAuth } from '../contexts/AuthContext';
 const { createContext, useContext, useEffect, useState } = require('react');
 
 const ArticlesContext = createContext();
-
-//temporary data
 
 // make a provider
 const ArticlesContextProvider = ({ children }) => {
@@ -81,29 +78,6 @@ const ArticlesContextProvider = ({ children }) => {
     }
   };
 
-  // const handleArticleSave = async (article) => {
-  //   const savedArticle = checkIfSaved(article);
-  //   if (!savedArticle) {
-  //     const articleToSave = {
-  //       keyword,
-  //       title: article.title,
-  //       text: article.description,
-  //       date: article.publishedAt,
-  //       source: article.source.name,
-  //       link: article.url,
-  //       image: article.urlToImage,
-  //     };
-  //     try {
-  //       const res = await mainApi.saveArticle(articleToSave, token);
-  //       setSavedArticles([...savedArticles, res]);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   } else {
-  //     handleArticleDelete(savedArticle);
-  //   }
-  // };
-
   const handleArticleDelete = (article) => {
     mainApi
       .deleteArticle(article._id, token)
@@ -115,18 +89,6 @@ const ArticlesContextProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
-
-  // const handleArticleDelete = async (article) => {
-  //   try {
-  //     const res = mainApi.deleteArticle(article._id, token);
-  //     const newSavedArticles = savedArticles.filter(
-  //       (savedArticle) => savedArticle._id !== article._id
-  //     );
-  //     setSavedArticles(newSavedArticles);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   return (
     <ArticlesContext.Provider

@@ -8,11 +8,6 @@ const Signup = () => {
   const popupContext = usePopup();
   const { handleRegister, authError } = useAuth();
 
-  // const handleChange = (evt) => {
-  //   const { name, value } = evt.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
-
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
 

@@ -20,8 +20,6 @@ class Api {
   }
 
   register(data) {
-    // const { email, password, name: username } = data;
-    // console.log(data);
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: this._headers,
@@ -70,7 +68,10 @@ class Api {
   };
 }
 
-const api = new Api('http://localhost:3000', {
+// const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://api.solomon-final.students.nomoredomainssbs.ru';
+
+const api = new Api(baseUrl, {
   'Content-Type': 'application/json',
   Accept: 'application/json',
 });
