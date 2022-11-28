@@ -1,4 +1,7 @@
 .news-card {
+  all: unset;
+}
+.news-card_container {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   position: relative;
@@ -142,7 +145,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .news-card {
+  .news-card_container {
     min-height: 420px;
   }
   .news-card__image-container {
@@ -187,7 +190,7 @@
 }
 
 @media screen and (max-width: 510px) {
-  .news-card {
+  .news-card_container {
     min-height: 440px;
   }
   .news-card__text-container {

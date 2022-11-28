@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# News Expolorer Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a frontend part of the News Explorer project. It is a single page application that allows users to search for news articles by keyword and save their favorite articles to their personal account.
 
-In the project directory, you can run:
+## Technologies
 
-### `npm start`
+- HTML
+- CSS
+- JavaScript
+- React
+- Hooks
+- React Router
+- Webpack
+- Babel
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Screenshot Demo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Nav Bar when not logged in:
 
-### `npm test`
+<img width="1327" alt="Screen Shot 2022-11-28 at 4 12 54 PM" src="https://user-images.githubusercontent.com/85166713/204299773-c5666e34-6206-4603-b127-e685c0507433.png">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Nav Bar when user is logged in:
 
-### `npm run build`
+<img width="1338" alt="Screen Shot 2022-11-28 at 4 13 09 PM" src="https://user-images.githubusercontent.com/85166713/204299834-efd22012-3a21-4af1-9cab-135a71390795.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Popup Forms for Signin in and Signing up:
 
-### `npm run eject`
+<img width="1036" alt="Screen Shot 2022-11-28 at 4 13 17 PM" src="https://user-images.githubusercontent.com/85166713/204299934-1f75af7a-f44e-4e72-a6d0-a75c20f028d7.png">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Form Validation on auth forms:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="842" alt="Screen Shot 2022-11-28 at 4 13 31 PM" src="https://user-images.githubusercontent.com/85166713/204300010-8a71ed7e-46cb-42fc-ab0a-5717f21a2130.png">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Search Results:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img width="1334" alt="Screen Shot 2022-11-28 at 4 13 50 PM" src="https://user-images.githubusercontent.com/85166713/204300105-40f5adda-9561-4833-b422-27d3397366fe.png">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+News card can be saved:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img width="426" alt="Screen Shot 2022-11-28 at 4 13 58 PM" src="https://user-images.githubusercontent.com/85166713/204300212-bceb5d9b-56e3-455e-9bfb-060927008ba0.png">
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Saved Articles area for logged in users:
 
-### Making a Progressive Web App
+<img width="1265" alt="Screen Shot 2022-11-28 at 4 14 11 PM" src="https://user-images.githubusercontent.com/85166713/204300293-17597728-e8e6-4bab-87ae-d72665b414d4.png">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+ 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Features
 
-### Deployment
+- Search for news articles by keyword
+- Register and login to personal account
+- Save articles to personal account
+- Delete articles from personal account
+- View articles in a separate window
+- Programatically navigate between pages
+- Dynamically render content
+- Frontend consumes data from the News Explorer API (RESTful API)
+- Responsive design
+- Form validation
+- Error handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## Live Demo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Deployed fullstack app (GCP):[https://solomon-final.students.nomoredomainssbs.ru/](https://solomon-final.students.nomoredomainssbs.ru/)
+
+## View Repositories
+
+Frontend Repo GH: [https://github.com/solomonbarayev/news-explorer-frontend](https://github.com/solomonbarayev/news-explorer-frontend)
+Backend Repo GH: [https://github.com/solomonbarayev/news-explorer-api](https://github.com/solomonbarayev/news-explorer-api)
+
+## Setup
+
+To run this project locally:
+
+1. clone backend repo
+2. clone frontend repo
+3. install dependencies in both repos
+4. run backend server with command `npm run dev`
+5. run frontend server with command `npm run start`
+6. change the `baseUrl` in the frontend repo `src/utils/MainApi.js` to `http://localhost:3000`

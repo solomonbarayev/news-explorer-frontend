@@ -21,10 +21,16 @@ const PopupWithForm = (props) => {
         onSubmit={props.onSubmit}
         noValidate>
         {props.children}
-        <fieldset className="popup__fieldset">
+        <fieldset className="popup__fieldset popup__fieldset_type_submit-area">
+          <span className="popup__input-error popup__input-error_type_auth">
+            {props.authError}
+          </span>
           <button
-            className={`popup__submit-button popup__submit-button_type_${props.name}`}
-            type="submit">
+            className={`popup__submit-button popup__submit-button_type_${
+              props.name
+            } ${!props.isValid ? 'popup__submit-button_disabled' : ''}`}
+            type="submit"
+            disabled={!props.isValid}>
             {props.buttonText}
           </button>
         </fieldset>
