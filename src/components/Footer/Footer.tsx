@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
+
+// const fbIcon = require('../../images/facebook_icon.svg');
+// const ghIcon = require('../../images/github_icon.svg');
 import fbIcon from '../../images/facebook_icon.svg';
 import ghIcon from '../../images/github_icon.svg';
 
@@ -24,8 +27,7 @@ const Footer = () => {
               <li className="footer__list-item">
                 <a
                   href="https://practicum.yandex.com/"
-                  className="footer__link"
-                >
+                  className="footer__link">
                   Practicum
                 </a>
               </li>
@@ -36,8 +38,7 @@ const Footer = () => {
                   href="https://github.com/solomonbarayev/</li>"
                   className="footer__link"
                   target="_blank"
-                  rel="noreferrer"
-                >
+                  rel="noreferrer">
                   <img
                     src={ghIcon}
                     alt="github icon"
@@ -50,8 +51,7 @@ const Footer = () => {
                   href="https://www.facebook.com/solomon.barayev.7"
                   className="footer__link"
                   target="_blank"
-                  rel="noreferrer"
-                >
+                  rel="noreferrer">
                   <img
                     src={fbIcon}
                     alt="facebook icon"

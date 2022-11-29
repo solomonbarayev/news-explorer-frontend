@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, MouseEvent } from 'react';
 import './MobileMenu.css';
-import logo from '../../images/NewsExplorer_logo_white.svg';
-import logOutIcon from '../../images/logout_icon_white.svg';
-
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { usePopup } from '../../contexts/PopupsContext';
 import { useUser } from '../../contexts/UserContext';
+import logo from '../../images/NewsExplorer_logo_white.svg';
+import logOutIcon from '../../images/logout_icon_white.svg';
 
 const MobileMenu = () => {
   const { loggedIn, handleLogout } = useAuth();
@@ -26,18 +25,24 @@ const MobileMenu = () => {
   useEffect(() => {
     if (!mobile) return;
 
-    function handleEscClose(evt) {
+    function handleEscClose(evt: KeyboardEvent) {
       if (evt.key === 'Escape') {
         closeAllPopups();
       }
     }
 
-    function handleOverlayClickClose(evt) {
-      if (evt.target.classList.contains('mobile-menu_opened')) {
+    function handleOverlayClickClose(
+      evt: React.MouseEvent<Element, MouseEvent>
+    ) {
+      if (
+        (evt.target as HTMLElement).classList.contains('mobile-menu_opened')
+      ) {
         closeAllPopups();
       }
     }
 
+    // change this to not touch the dom directly
+    // from here
     document.addEventListener('keydown', handleEscClose);
     document.addEventListener('click', handleOverlayClickClose);
 
@@ -45,6 +50,7 @@ const MobileMenu = () => {
       document.removeEventListener('keydown', handleEscClose);
       document.removeEventListener('click', handleOverlayClickClose);
     };
+    // to here
   }, [mobile, closeAllPopups]);
 
   return (
@@ -90,7 +96,11 @@ const MobileMenu = () => {
             className="mobile-menu__button"
             onClick={handleAuthButtonClick}>
             <span className="mobile-menu__button-text">
-              {loggedIn ? currentUser.name : 'Sign in'}
+              {loggedIn
+                ? currentUser
+                  ? currentUser.name
+                  : 'Sign in'
+                : 'Sign in'}
             </span>
             {loggedIn && (
               <img

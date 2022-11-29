@@ -1,22 +1,45 @@
 import mainApi from '../utils/MainApi';
 import newsApi from '../utils/NewsApi';
-import { useAuth } from '../contexts/AuthContext';
-const { createContext, useContext, useEffect, useState } = require('react');
+import { useAuth } from './AuthContext';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Article, UnformattedArticle } from '../models/Article';
 
-const ArticlesContext = createContext();
+interface ArticlesContextValue {
+  articles: UnformattedArticle[];
+  setArticles: React.Dispatch<React.SetStateAction<UnformattedArticle[]>>;
+  articlesToShow: UnformattedArticle[];
+  setArticlesToShow: React.Dispatch<React.SetStateAction<UnformattedArticle[]>>;
+  articleIndex: number;
+  setArticleIndex: React.Dispatch<React.SetStateAction<number>>;
+  savedArticles: Article[];
+  setSavedArticles: React.Dispatch<React.SetStateAction<Article[]>>;
+  handleArticleSave: (article: UnformattedArticle) => void;
+  handleArticleDelete: (article: Article) => void;
+  keyword: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  isEmpty: boolean;
+  setIsEmpty: React.Dispatch<React.SetStateAction<boolean>>;
+  handleArticleSearch: (keyword: string) => void;
+}
+
+const ArticlesContext = createContext<ArticlesContextValue | undefined>(
+  undefined
+);
 
 // make a provider
 const ArticlesContextProvider = ({ children }) => {
   const { token, loggedIn } = useAuth();
-  const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [articleIndex, setArticleIndex] = useState(3);
-  const [articlesToShow, setArticlesToShow] = useState(
-    articles.slice[(0, articleIndex)]
+  const [articles, setArticles] = useState<UnformattedArticle[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [articleIndex, setArticleIndex] = useState<number>(3);
+  const [articlesToShow, setArticlesToShow] = useState<UnformattedArticle[]>(
+    articles.slice(0, articleIndex)
   );
-  const [savedArticles, setSavedArticles] = useState([]);
-  const [keyword, setKeyword] = useState('');
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [savedArticles, setSavedArticles] = useState<Article[]>([]);
+  const [keyword, setKeyword] = useState<string>('');
+  const [isEmpty, setIsEmpty] = useState<boolean>(false);
 
   useEffect(() => {
     if (!loggedIn) {
@@ -81,7 +104,7 @@ const ArticlesContextProvider = ({ children }) => {
   const handleArticleDelete = (article) => {
     mainApi
       .deleteArticle(article._id, token)
-      .then((res) => {
+      .then(() => {
         const newSavedArticles = savedArticles.filter(
           (savedArticle) => savedArticle._id !== article._id
         );
@@ -96,6 +119,7 @@ const ArticlesContextProvider = ({ children }) => {
         articles,
         setArticles,
         articlesToShow,
+        setArticlesToShow,
         articleIndex,
         setArticleIndex,
         savedArticles,
@@ -119,5 +143,12 @@ export default ArticlesContextProvider;
 
 export const useArticles = () => {
   const context = useContext(ArticlesContext);
+
+  if (context === undefined) {
+    throw new Error(
+      'useArticles must be used within a ArticlesContextProvider'
+    );
+  }
+
   return context;
 };

@@ -1,5 +1,6 @@
 import './AboutAuthor.css';
 import React from 'react';
+// const aboutImage = require('../../images/my-profile.png');
 import aboutImage from '../../images/my-profile.png';
 
 const AboutAuthor = () => {

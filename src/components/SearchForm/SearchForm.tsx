@@ -24,7 +24,7 @@ const SearchForm = () => {
 
   //use effect to fetch last searched keyword on reload
   React.useEffect(() => {
-    const keywordHistory = localStorage.getItem('keyword');
+    const keywordHistory: string | null = localStorage.getItem('keyword');
     if (keywordHistory) {
       setKeyword(keywordHistory);
       handleArticleSearch(keywordHistory);

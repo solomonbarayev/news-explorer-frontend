@@ -1,7 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const IsHomeContext = createContext();
+interface IsHomeContextType {
+  isHome: boolean;
+}
+
+const IsHomeContext = createContext<IsHomeContextType | undefined>(undefined);
 
 const IsHomeContextProvider = ({ children }) => {
   const [isHome, setIsHome] = useState(true);
@@ -12,13 +16,22 @@ const IsHomeContextProvider = ({ children }) => {
   }, [location]);
 
   return (
-    <IsHomeContext.Provider value={isHome}>{children}</IsHomeContext.Provider>
+    <IsHomeContext.Provider value={{ isHome }}>
+      {children}
+    </IsHomeContext.Provider>
   );
 };
 
 export default IsHomeContextProvider;
 
 export const useIsHome = () => {
-  const isHome = useContext(IsHomeContext);
+  const context = useContext(IsHomeContext);
+
+  if (context === undefined) {
+    throw new Error('useIsHome must be used within a IsHomeContextProvider');
+  }
+
+  const { isHome } = context;
+
   return { isHome };
 };

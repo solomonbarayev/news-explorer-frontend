@@ -4,11 +4,18 @@ import { useIsHome } from '../../contexts/IsHomeContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { usePopup } from '../../contexts/PopupsContext';
 import { useArticles } from '../../contexts/ArticlesContext';
+import { Article, UnformattedArticle } from '../../models/Article';
 
-const NewsCard = ({ card }) => {
+type NewsCardProps = {
+  card: UnformattedArticle | Article;
+};
+
+const NewsCard = ({ card }: NewsCardProps) => {
   const [showToolTip, setShowToolTip] = React.useState(false);
   const [isSaved, setIsSaved] = React.useState(false);
-  const [formattedCard, setFormattedCard] = React.useState({});
+  const [formattedCard, setFormattedCard] = React.useState<Article>(
+    {} as Article
+  );
 
   const [defaultImage] = React.useState(
     'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80'
@@ -37,7 +44,7 @@ const NewsCard = ({ card }) => {
     setIsSaved(true);
   };
 
-  const handleButtonClick = (e) => {
+  const handleButtonClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     e.nativeEvent.stopImmediatePropagation();
     isHome && !loggedIn && openPopup('signin');
@@ -46,8 +53,8 @@ const NewsCard = ({ card }) => {
   };
 
   const checkIfSaved = () => {
-    const articleIsSaved = savedArticles.find((article) => {
-      return article.link === card.url;
+    const articleIsSaved = savedArticles.find((article: Article) => {
+      return article.link === (card as UnformattedArticle).url;
     });
 
     articleIsSaved ? setIsSaved(true) : setIsSaved(false);
@@ -62,6 +69,7 @@ const NewsCard = ({ card }) => {
 
   React.useEffect(() => {
     if (isHome) {
+      card = card as UnformattedArticle;
       setFormattedCard({
         title: card.title,
         text: card.description,
@@ -69,21 +77,23 @@ const NewsCard = ({ card }) => {
         source: card.source.name,
         link: card.url,
         image: card.urlToImage,
-        saved: isSaved,
       });
     } else {
-      setFormattedCard(card);
+      setFormattedCard(card as Article);
     }
   }, [card]);
 
-  const formatDate = (date) => {
+  const formatDate = (date: string) => {
     const newDate = new Date(date);
     const options = {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
     };
-    return newDate.toLocaleDateString('en-US', options);
+    return newDate.toLocaleDateString(
+      'en-US',
+      options as Intl.DateTimeFormatOptions
+    );
   };
 
   return (

@@ -9,7 +9,9 @@ import PopupContextProvider from './contexts/PopupsContext';
 import AuthContextProvider from './contexts/AuthContext';
 import UserContextProvider from './contexts/UserContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 root.render(
   <React.StrictMode>
     <BrowserRouter>

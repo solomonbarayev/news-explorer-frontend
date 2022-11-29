@@ -6,11 +6,12 @@ const SavedNewsHeader = () => {
   const { savedArticles } = useArticles();
 
   const [uniqueKeywordsByPopularity, setUniqueKeywordsByPopularity] =
-    React.useState([]);
+    React.useState<string[]>([]);
 
   function findKeywordsByPopularity(keywords) {
     return keywords.reduce((acc, keyword) => {
       acc[keyword] ? (acc[keyword] += 1) : (acc[keyword] = 1);
+      console.log(acc);
       return acc;
     }, {});
   }
@@ -21,11 +22,13 @@ const SavedNewsHeader = () => {
 
     //sort keywords by popularity
     const sortedKeywords = Object.entries(keywordsByPopularity).sort(
-      (a, b) => b[1] - a[1]
+      (a, b) => (b[1] as number) - (a[1] as number)
     );
 
     //get unique keywords
-    const presortedUniqueKeywords = sortedKeywords.map((keyword) => keyword[0]);
+    const presortedUniqueKeywords: string[] = sortedKeywords.map(
+      (keyword) => keyword[0]
+    );
 
     setUniqueKeywordsByPopularity(presortedUniqueKeywords);
   };

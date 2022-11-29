@@ -1,9 +1,15 @@
 import React, { useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
+type InputTypes = {
+  email: string;
+  password: string;
+  name?: string;
+};
+
 const useFormWithValidation = () => {
-  const [values, setValues] = useState({});
-  const [errors, setErrors] = useState({});
+  const [values, setValues] = useState({} as InputTypes);
+  const [errors, setErrors] = useState({} as InputTypes);
   const [isValid, setIsValid] = useState(false);
 
   const { setAuthError } = useAuth();
@@ -40,7 +46,11 @@ const useFormWithValidation = () => {
   }, [values, errors]);
 
   const resetForm = useCallback(
-    (newValues = {}, newErrors = {}, newIsValid = false) => {
+    (
+      newValues = {} as InputTypes,
+      newErrors = {} as InputTypes,
+      newIsValid = false
+    ) => {
       setValues(newValues);
       setErrors(newErrors);
       setIsValid(newIsValid);

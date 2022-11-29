@@ -2,7 +2,13 @@ import React, { useEffect } from 'react';
 import './Popup.css';
 import { usePopup } from '../../contexts/PopupsContext';
 
-const Popup = ({ isOpen, name, children }) => {
+type PopupProps = {
+  name: string;
+  isOpen: boolean;
+  children: React.ReactNode;
+};
+
+const Popup = ({ isOpen, name, children }: PopupProps) => {
   const popupsContext = usePopup();
 
   useEffect(() => {
@@ -20,6 +26,8 @@ const Popup = ({ isOpen, name, children }) => {
       }
     }
 
+    // change this to not touch the dom directly
+    // from here
     document.addEventListener('keydown', handleEscClose);
     document.addEventListener('click', handleOverlayClickClose);
 
@@ -27,6 +35,7 @@ const Popup = ({ isOpen, name, children }) => {
       document.removeEventListener('keydown', handleEscClose);
       document.removeEventListener('click', handleOverlayClickClose);
     };
+    // to here
   }, [isOpen, popupsContext.closeAllPopups]);
 
   return (

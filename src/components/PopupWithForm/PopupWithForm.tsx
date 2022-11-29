@@ -3,11 +3,23 @@ import './PopupWithForm.css';
 import Popup from '../Popup/Popup';
 import { usePopup } from '../../contexts/PopupsContext';
 
-const PopupWithForm = (props) => {
+type PopupWithFormProps = {
+  name: string;
+  title: string;
+  children: React.ReactNode;
+  redirectText: string;
+  isOpen: boolean;
+  isValid: boolean;
+  authError: string;
+  buttonText: string;
+  onSubmit: (e: React.FormEvent) => void;
+};
+
+const PopupWithForm = (props: PopupWithFormProps) => {
   const popupContext = usePopup();
 
   const handleRedirect = () => {
-    let popupToOpen = props.name === 'signin' ? 'signup' : 'signin';
+    const popupToOpen = props.name === 'signin' ? 'signup' : 'signin';
     popupContext.closeAllPopups();
     popupContext.openPopup(popupToOpen);
   };

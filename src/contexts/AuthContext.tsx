@@ -1,10 +1,25 @@
-import { useState, createContext, useContext, useEffect } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useUser } from './UserContext';
 import mainApi from '../utils/MainApi';
 import { usePopup } from './PopupsContext';
 
-const AuthContext = createContext();
+interface AuthContextType {
+  token: string | null;
+  loggedIn: boolean;
+  setLoggedIn: (value: boolean) => void;
+  handleLogout: () => void;
+  handleLogin: (value: { email: string; password: string }) => void;
+  handleRegister: (value: {
+    email: string;
+    password: string;
+    name: string;
+  }) => void;
+  authError: string;
+  setAuthError: (value: string) => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -31,7 +46,7 @@ const AuthProvider = ({ children }) => {
           popupContext.closeAllPopups();
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setAuthError('Icorrect email or password.');
       });
   };
@@ -43,7 +58,7 @@ const AuthProvider = ({ children }) => {
     setAuthError('');
     mainApi
       .register({ email, password, name })
-      .then((res) => {
+      .then(() => {
         popupContext.closeAllPopups();
         popupContext.openPopup('success');
       })
@@ -58,7 +73,7 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     setLoggedIn(false);
-    setCurrentUser({});
+    setCurrentUser(null);
     localStorage.removeItem('token');
     history.push('/');
   };
@@ -106,6 +121,11 @@ export default AuthProvider;
 
 const useAuth = () => {
   const context = useContext(AuthContext);
+
+  if (context === undefined) {
+    throw new Error('useAuth must be used within a AuthProvider');
+  }
+
   return context;
 };
 
