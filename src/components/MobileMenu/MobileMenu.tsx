@@ -1,4 +1,4 @@
-import React, { useEffect, MouseEvent } from 'react';
+import React, { useEffect, MouseEvent, useCallback } from 'react';
 import './MobileMenu.css';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -22,43 +22,33 @@ const MobileMenu = () => {
     }
   };
 
+  const stopOverlayClickPropagation = (evt: MouseEvent) => {
+    evt.stopPropagation();
+  };
+
+  const escapeKeyclose = useCallback(
+    (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape' && mobile) {
+        closeAllPopups();
+      }
+    },
+    [mobile, closeAllPopups]
+  );
+
   useEffect(() => {
-    if (!mobile) return;
-
-    function handleEscClose(evt: KeyboardEvent) {
-      if (evt.key === 'Escape') {
-        closeAllPopups();
-      }
-    }
-
-    function handleOverlayClickClose(
-      evt: React.MouseEvent<Element, MouseEvent>
-    ) {
-      if (
-        (evt.target as HTMLElement).classList.contains('mobile-menu_opened')
-      ) {
-        closeAllPopups();
-      }
-    }
-
-    // change this to not touch the dom directly
-    // from here
-    document.addEventListener('keydown', handleEscClose);
-    document.addEventListener('click', handleOverlayClickClose);
-
+    document.addEventListener('keydown', escapeKeyclose);
     return () => {
-      document.removeEventListener('keydown', handleEscClose);
-      document.removeEventListener('click', handleOverlayClickClose);
+      document.removeEventListener('keydown', escapeKeyclose);
     };
-    // to here
-  }, [mobile, closeAllPopups]);
+  }, [escapeKeyclose]);
 
   return (
     <div
-      className={`${
-        mobile ? 'mobile-menu mobile-menu_opened' : 'mobile-menu'
-      }`}>
-      <div className="mobile-menu__container">
+      className={`${mobile ? 'mobile-menu mobile-menu_opened' : 'mobile-menu'}`}
+      onClick={closeAllPopups}>
+      <div
+        className="mobile-menu__container"
+        onClick={stopOverlayClickPropagation}>
         <div className="mobile-menu__top-bar">
           <div className="mobile-menu__logo-container">
             <img src={logo} alt="logo" className="mobile-menu__logo" />
