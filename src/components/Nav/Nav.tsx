@@ -5,21 +5,28 @@ import blackLogo from '../../images/NewsExplorer_logo_black.svg';
 import whiteLogo from '../../images/NewsExplorer_logo_white.svg';
 import blackBurgerIcon from '../../images/menu_icon_black.svg';
 import whiteBurgerIcon from '../../images/menu_icon_white.svg';
-import { usePopup } from '../../contexts/PopupsContext';
-import { useAuth } from '../../contexts/AuthContext';
-import { useUser } from '../../contexts/UserContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store';
+import { handleLogoutRX } from '../../features/user/userSlice';
+import { openPopup } from '../../features/popups/popupsSlice';
 
 const Nav = ({ isHome }) => {
-  const { openPopup } = usePopup();
-  const { loggedIn, handleLogout } = useAuth();
-  const { currentUser } = useUser();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { user, loggedIn } = useSelector((state: RootState) => state.user);
 
   const handleNavButtonClick = () => {
-    !loggedIn ? openPopup('signin') : handleLogout();
+    if (!loggedIn) {
+      dispatch(openPopup('signin'));
+    }
+    if (loggedIn) {
+      dispatch(handleLogoutRX());
+    }
   };
 
   const handleHamburgerClick = () => {
-    openPopup('mobile');
+    dispatch(openPopup('mobile'));
   };
 
   return (
@@ -72,7 +79,8 @@ const Nav = ({ isHome }) => {
             }`}
             onClick={handleNavButtonClick}>
             <span className="nav__button-text">
-              {loggedIn ? currentUser.name : 'Sign in'}
+              {/* {loggedIn ? currentUser.name : 'Sign in'} */}
+              {loggedIn && user ? user.name : 'Sign in'}
             </span>
             {loggedIn && (
               <span

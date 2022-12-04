@@ -1,15 +1,17 @@
 import React from 'react';
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
-import { useArticles } from '../../contexts/ArticlesContext';
 import { useIsHome } from '../../contexts/IsHomeContext';
 import { UnformattedArticle, Article } from '../../models/Article';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const NewsCardList = () => {
-  const { savedArticles } = useArticles();
-  const { isHome } = useIsHome();
+  const { articlesToShow, savedArticles } = useSelector(
+    (state: RootState) => state.articles
+  );
 
-  const { articlesToShow } = useArticles();
+  const { isHome } = useIsHome();
 
   return (
     <ul className="news-card-list">

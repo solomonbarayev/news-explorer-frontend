@@ -1,10 +1,14 @@
 import React from 'react';
 import './NewsCard.css';
 import { useIsHome } from '../../contexts/IsHomeContext';
-import { useAuth } from '../../contexts/AuthContext';
-import { usePopup } from '../../contexts/PopupsContext';
-import { useArticles } from '../../contexts/ArticlesContext';
 import { Article, UnformattedArticle } from '../../models/Article';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../store';
+import {
+  saveArticle,
+  deleteArticle,
+} from '../../features/articles/articlesActions';
+import { openPopup } from '../../features/popups/popupsSlice';
 
 type NewsCardProps = {
   card: UnformattedArticle | Article;
@@ -17,20 +21,18 @@ const NewsCard = ({ card }: NewsCardProps) => {
     {} as Article
   );
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { loggedIn } = useSelector((state: RootState) => state.user);
+  const { articlesToShow, savedArticles, articles } = useSelector(
+    (state: RootState) => state.articles
+  );
+
   const [defaultImage] = React.useState(
     'https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80'
   );
 
   const { isHome } = useIsHome();
-  const { loggedIn } = useAuth();
-  const { openPopup } = usePopup();
-  const {
-    articlesToShow,
-    handleArticleSave,
-    savedArticles,
-    handleArticleDelete,
-    articles,
-  } = useArticles();
 
   const handleMouseEnter = () => {
     !loggedIn && setShowToolTip(true);
@@ -40,16 +42,32 @@ const NewsCard = ({ card }: NewsCardProps) => {
   };
 
   const handleSaveClick = () => {
-    handleArticleSave(card);
+    dispatch(saveArticle(card as UnformattedArticle));
     setIsSaved(true);
+  };
+
+  const handleDeleteClick = () => {
+    if (isHome) {
+      let articleToDelete;
+      savedArticles.forEach((article) => {
+        if (article.title === card.title) {
+          articleToDelete = article;
+        }
+      });
+      dispatch(deleteArticle(articleToDelete._id));
+    } else {
+      //here we are in the saved news page so articles already have _id
+      dispatch(deleteArticle(card._id));
+    }
   };
 
   const handleButtonClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     e.nativeEvent.stopImmediatePropagation();
-    isHome && !loggedIn && openPopup('signin');
-    !isHome && handleArticleDelete(card);
-    isHome && loggedIn && handleSaveClick();
+    isHome && !loggedIn && dispatch(openPopup('signin'));
+    !isHome && handleDeleteClick();
+    isHome && loggedIn && !isSaved && handleSaveClick();
+    isHome && loggedIn && isSaved && handleDeleteClick();
   };
 
   const checkIfSaved = () => {
@@ -71,6 +89,7 @@ const NewsCard = ({ card }: NewsCardProps) => {
     if (isHome) {
       card = card as UnformattedArticle;
       setFormattedCard({
+        _id: card._id,
         title: card.title,
         text: card.description,
         date: card.publishedAt,

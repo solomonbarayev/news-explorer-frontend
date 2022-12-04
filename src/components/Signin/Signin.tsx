@@ -1,24 +1,32 @@
 import React from 'react';
 import './Signin.css';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
-import { usePopup } from '../../contexts/PopupsContext';
-import { useAuth } from '../../contexts/AuthContext';
 import useFormWithValidation from '../../hooks/useForm';
+import { loginUser } from '../../features/user/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { closeAllPopups } from '../../features/popups/popupsSlice';
 
 const Signin = () => {
-  const popupContext = usePopup();
-  const { handleLogin, authError } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
+  const { error } = useSelector((state: RootState) => state.user);
+  const { signin } = useSelector((state: RootState) => state.popups);
 
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (!values.email || !values.password) {
       return;
     }
-    handleLogin(values);
-    resetForm();
+    try {
+      dispatch(loginUser(values));
+      dispatch(closeAllPopups());
+      resetForm();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -28,9 +36,9 @@ const Signin = () => {
       buttonText="Sign in"
       redirectText="Sign up"
       onSubmit={handleSubmit}
-      isOpen={popupContext.popupsState.signin}
+      isOpen={signin}
       isValid={isValid}
-      authError={authError}>
+      authError={error}>
       <fieldset className="popup__fieldset">
         <div className="popup__input-container">
           <label className="popup__label">Email</label>

@@ -1,19 +1,21 @@
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
-import { usePopup } from '../../contexts/PopupsContext';
-import { useAuth } from '../../contexts/AuthContext';
 import useFormWithValidation from '../../hooks/useForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { registerUser } from '../../features/user/userActions';
+import { AppDispatch, RootState } from '../../store';
 
 const Signup = () => {
-  const popupContext = usePopup();
-  const { handleRegister, authError } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
+  const { error } = useSelector((state: RootState) => state.user);
+  const { signup } = useSelector((state: RootState) => state.popups);
 
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleRegister(values);
+    dispatch(registerUser(values));
     resetForm();
   };
 
@@ -24,9 +26,9 @@ const Signup = () => {
       buttonText="Sign up"
       redirectText="Sign in"
       onSubmit={handleSubmit}
-      isOpen={popupContext.popupsState.signup}
+      isOpen={signup}
       isValid={isValid}
-      authError={authError}>
+      authError={error}>
       <fieldset className="popup__fieldset">
         <div className="popup__input-container">
           <label className="popup__label">Email</label>

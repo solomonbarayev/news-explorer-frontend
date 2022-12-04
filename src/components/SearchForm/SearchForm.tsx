@@ -1,14 +1,17 @@
 import React from 'react';
 import './SearchForm.css';
-import { useArticles } from '../../contexts/ArticlesContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { searchArticles } from '../../features/articles/articlesActions';
+import { setStateKeyword } from '../../features/articles/articlesSlice';
 
 const SearchForm = () => {
-  const { keyword, setKeyword, handleArticleSearch } = useArticles();
-
+  const dispatch = useDispatch<AppDispatch>();
   const [error, setError] = React.useState('');
+  const { keyword } = useSelector((state: RootState) => state.articles);
 
   const handleChange = (e) => {
-    setKeyword(e.target.value);
+    dispatch(setStateKeyword(e.target.value));
   };
 
   const handleSubmit = (e) => {
@@ -19,15 +22,15 @@ const SearchForm = () => {
     }
     setError('');
     localStorage.setItem('keyword', keyword);
-    handleArticleSearch(keyword);
+    dispatch(searchArticles(keyword));
   };
 
   //use effect to fetch last searched keyword on reload
   React.useEffect(() => {
     const keywordHistory: string | null = localStorage.getItem('keyword');
     if (keywordHistory) {
-      setKeyword(keywordHistory);
-      handleArticleSearch(keywordHistory);
+      dispatch(setStateKeyword(keywordHistory));
+      dispatch(searchArticles(keywordHistory));
     }
   }, []);
 

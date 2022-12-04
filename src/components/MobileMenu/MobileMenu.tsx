@@ -1,24 +1,27 @@
 import React, { useEffect, MouseEvent, useCallback } from 'react';
 import './MobileMenu.css';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import { usePopup } from '../../contexts/PopupsContext';
-import { useUser } from '../../contexts/UserContext';
 import logo from '../../images/NewsExplorer_logo_white.svg';
 import logOutIcon from '../../images/logout_icon_white.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { handleLogoutRX } from '../../features/user/userSlice';
+import { closeAllPopups, openPopup } from '../../features/popups/popupsSlice';
 
 const MobileMenu = () => {
-  const { loggedIn, handleLogout } = useAuth();
-  const { currentUser } = useUser();
-  const { closeAllPopups, popupsState, openPopup } = usePopup();
-  const { mobile } = popupsState;
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { loggedIn, user } = useSelector((state: RootState) => state.user);
+
+  const { mobile } = useSelector((state: RootState) => state.popups);
 
   const handleAuthButtonClick = () => {
     if (loggedIn) {
-      handleLogout();
-      closeAllPopups();
+      dispatch(handleLogoutRX());
+      dispatch(closeAllPopups());
     } else {
-      openPopup('signin');
+      dispatch(closeAllPopups());
+      dispatch(openPopup('signin'));
     }
   };
 
@@ -45,7 +48,7 @@ const MobileMenu = () => {
   return (
     <div
       className={`${mobile ? 'mobile-menu mobile-menu_opened' : 'mobile-menu'}`}
-      onClick={closeAllPopups}>
+      onClick={() => dispatch(closeAllPopups())}>
       <div
         className="mobile-menu__container"
         onClick={stopOverlayClickPropagation}>
@@ -57,7 +60,7 @@ const MobileMenu = () => {
             type="button"
             className="mobile-menu__close-button"
             aria-label="close button"
-            onClick={closeAllPopups}></button>
+            onClick={() => dispatch(closeAllPopups())}></button>
         </div>
         <nav className="mobile-menu__nav">
           <ul className="mobile-menu__nav-list">
@@ -66,7 +69,8 @@ const MobileMenu = () => {
                 exact={true}
                 to="/"
                 className="mobile-menu__link"
-                activeClassName="mobile-menu__link_active">
+                activeClassName="mobile-menu__link_active"
+                onClick={() => dispatch(closeAllPopups())}>
                 Home
               </NavLink>
             </li>
@@ -75,7 +79,8 @@ const MobileMenu = () => {
                 <NavLink
                   to="/saved-news"
                   className="mobile-menu__link"
-                  activeClassName="mobile-menu__link_active">
+                  activeClassName="mobile-menu__link_active"
+                  onClick={() => dispatch(closeAllPopups())}>
                   Saved articles
                 </NavLink>
               </li>
@@ -86,11 +91,7 @@ const MobileMenu = () => {
             className="mobile-menu__button"
             onClick={handleAuthButtonClick}>
             <span className="mobile-menu__button-text">
-              {loggedIn
-                ? currentUser
-                  ? currentUser.name
-                  : 'Sign in'
-                : 'Sign in'}
+              {loggedIn ? (user ? user.name : 'Sign in') : 'Sign in'}
             </span>
             {loggedIn && (
               <img

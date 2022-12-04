@@ -1,9 +1,8 @@
+import React from 'react';
+
 // import css
 import './Header.css';
 import Nav from '../Nav/Nav';
-
-import React from 'react';
-// import SearchForm from '../SearchForm/SearchForm';
 import HomeHeader from '../HomeHeader/HomeHeader';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 

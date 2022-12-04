@@ -15,5 +15,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["index.d.ts"]
+  "include": ["images.d.ts"]
 }

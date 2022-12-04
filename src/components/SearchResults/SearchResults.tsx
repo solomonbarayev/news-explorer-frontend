@@ -1,11 +1,17 @@
 import React from 'react';
 import './SearchResults.css';
 import NewsCardList from '../NewsCardList/NewsCardList';
-import { useArticles } from '../../contexts/ArticlesContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../store';
+import { showMoreArticles } from '../../features/articles/articlesSlice';
 
 const SearchResults = () => {
-  const { articleIndex, setArticleIndex, articlesToShow, articles } =
-    useArticles();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { articlesToShow, articles } = useSelector(
+    (state: RootState) => state.articles
+  );
+
   return (
     <section className="search-results">
       <div className="section search-results__container">
@@ -15,7 +21,7 @@ const SearchResults = () => {
         {!(articlesToShow.length === articles.length) && (
           <button
             className="search-results__button"
-            onClick={() => setArticleIndex(articleIndex + 3)}>
+            onClick={() => dispatch(showMoreArticles())}>
             Show more
           </button>
         )}

@@ -23,7 +23,7 @@ class NewsApi {
 }
 
 const newsApi = new NewsApi({
-  baseUrl: 'https://nomoreparties.co/news/v2/everything?q=',
+  baseUrl: 'https://newsapi.org/v2/everything?q=',
   apiKey: '3433daf6d8f744a3a55bff265b7aa764',
 });
 

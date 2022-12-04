@@ -1,7 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useDispatch } from 'react-redux';
+import { resetError } from '../features/user/userSlice';
+import { AppDispatch } from '../store';
+resetError;
 
-type InputTypes = {
+export type InputTypes = {
   email: string;
   password: string;
   name?: string;
@@ -12,7 +15,7 @@ const useFormWithValidation = () => {
   const [errors, setErrors] = useState({} as InputTypes);
   const [isValid, setIsValid] = useState(false);
 
-  const { setAuthError } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
 
   const validatePassword = useCallback((password) => {
     if (password.length < 8) {
@@ -29,7 +32,7 @@ const useFormWithValidation = () => {
     if (e.target.name === 'password') {
       setErrors({ ...errors, [name]: validatePassword(value) });
     }
-    setAuthError('');
+    dispatch(resetError());
   };
 
   React.useEffect(() => {

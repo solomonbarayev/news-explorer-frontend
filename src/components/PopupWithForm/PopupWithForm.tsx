@@ -1,7 +1,9 @@
 import React from 'react';
 import './PopupWithForm.css';
 import Popup from '../Popup/Popup';
-import { usePopup } from '../../contexts/PopupsContext';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store';
+import { closeAllPopups, openPopup } from '../../features/popups/popupsSlice';
 
 type PopupWithFormProps = {
   name: string;
@@ -10,18 +12,18 @@ type PopupWithFormProps = {
   redirectText: string;
   isOpen: boolean;
   isValid: boolean;
-  authError: string;
+  authError: string | null;
   buttonText: string;
   onSubmit: (e: React.FormEvent) => void;
 };
 
 const PopupWithForm = (props: PopupWithFormProps) => {
-  const popupContext = usePopup();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleRedirect = () => {
     const popupToOpen = props.name === 'signin' ? 'signup' : 'signin';
-    popupContext.closeAllPopups();
-    popupContext.openPopup(popupToOpen);
+    dispatch(closeAllPopups());
+    dispatch(openPopup(popupToOpen));
   };
 
   return (

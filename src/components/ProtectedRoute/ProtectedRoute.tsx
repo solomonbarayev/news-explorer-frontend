@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
@@ -9,7 +10,7 @@ type ProtectedRouteProps = {
 };
 
 const ProtectedRoute = ({ children, path }: ProtectedRouteProps) => {
-  const { loggedIn } = useAuth();
+  const { loggedIn } = useSelector((state: RootState) => state.user);
 
   return loggedIn ? (
     <Route path={path}>{children}</Route>

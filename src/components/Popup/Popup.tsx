@@ -1,6 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import './Popup.css';
-import { usePopup } from '../../contexts/PopupsContext';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store';
+import { closeAllPopups } from '../../features/popups/popupsSlice';
 
 type PopupProps = {
   name: string;
@@ -9,7 +11,7 @@ type PopupProps = {
 };
 
 const Popup = ({ isOpen, name, children }: PopupProps) => {
-  const popupsContext = usePopup();
+  const dispatch = useDispatch<AppDispatch>();
 
   const stopOverlayClickPropogation = (evt: React.MouseEvent) => {
     evt.stopPropagation();
@@ -18,10 +20,10 @@ const Popup = ({ isOpen, name, children }: PopupProps) => {
   const handleEscClose = useCallback(
     (evt) => {
       if (evt.key === 'Escape' && isOpen) {
-        popupsContext.closeAllPopups();
+        dispatch(closeAllPopups());
       }
     },
-    [isOpen, popupsContext.closeAllPopups]
+    [isOpen]
   );
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const Popup = ({ isOpen, name, children }: PopupProps) => {
   return (
     <div
       className={`popup ${isOpen ? 'popup_opened' : ''} popup_type_${name}`}
-      onClick={popupsContext.closeAllPopups}>
+      onClick={() => dispatch(closeAllPopups())}>
       <div
         className={`popup__container popup__container_type_${name}`}
         onClick={stopOverlayClickPropogation}>
@@ -42,7 +44,7 @@ const Popup = ({ isOpen, name, children }: PopupProps) => {
         <button
           className={`popup__close-button ${`popup__close-button_type_${name}`}`}
           type="button"
-          onClick={popupsContext.closeAllPopups}
+          onClick={() => dispatch(closeAllPopups())}
         />
       </div>
     </div>

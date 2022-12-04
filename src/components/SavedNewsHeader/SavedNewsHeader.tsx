@@ -1,9 +1,10 @@
 import React from 'react';
 import './SavedNewsHeader.css';
-import { useArticles } from '../../contexts/ArticlesContext';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const SavedNewsHeader = () => {
-  const { savedArticles } = useArticles();
+  const { savedArticles } = useSelector((state: RootState) => state.articles);
 
   const [uniqueKeywordsByPopularity, setUniqueKeywordsByPopularity] =
     React.useState<string[]>([]);
@@ -11,7 +12,6 @@ const SavedNewsHeader = () => {
   function findKeywordsByPopularity(keywords) {
     return keywords.reduce((acc, keyword) => {
       acc[keyword] ? (acc[keyword] += 1) : (acc[keyword] = 1);
-      console.log(acc);
       return acc;
     }, {});
   }

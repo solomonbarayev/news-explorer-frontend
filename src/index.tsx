@@ -4,10 +4,9 @@ import './index.css';
 import App from './components/App/App';
 import { BrowserRouter } from 'react-router-dom';
 import IsHomeContextProvider from './contexts/IsHomeContext';
-import ArticlesContextProvider from './contexts/ArticlesContext';
-import PopupContextProvider from './contexts/PopupsContext';
-import AuthContextProvider from './contexts/AuthContext';
-import UserContextProvider from './contexts/UserContext';
+
+import { Provider } from 'react-redux';
+import store from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,17 +14,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserContextProvider>
-        <PopupContextProvider>
-          <AuthContextProvider>
-            <IsHomeContextProvider>
-              <ArticlesContextProvider>
-                <App />
-              </ArticlesContextProvider>
-            </IsHomeContextProvider>
-          </AuthContextProvider>
-        </PopupContextProvider>
-      </UserContextProvider>
+      <Provider store={store}>
+        <IsHomeContextProvider>
+          <App />
+        </IsHomeContextProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

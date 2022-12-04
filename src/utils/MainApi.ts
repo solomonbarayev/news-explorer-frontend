@@ -1,3 +1,4 @@
+import axios from 'axios';
 class Api {
   _baseUrl: string;
   _headers: HeadersInit;
@@ -15,19 +16,15 @@ class Api {
   }
 
   login(data) {
-    return fetch(`${this._baseUrl}/signin`, {
-      method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify(data),
-    }).then(this._checkResponse);
+    return axios.post(`${this._baseUrl}/signin`, data, {
+      headers: this._headers as { [key: string]: string },
+    });
   }
 
   register(data) {
-    return fetch(`${this._baseUrl}/signup`, {
-      method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify(data),
-    }).then(this._checkResponse);
+    return axios.post(`${this._baseUrl}/signup`, data, {
+      headers: this._headers as { [key: string]: string },
+    });
   }
 
   saveArticle(article, token) {
@@ -74,9 +71,11 @@ class Api {
 // const baseUrl = 'http://localhost:3000';
 const baseUrl = 'https://api.solomon-final.students.nomoredomainssbs.ru';
 
-const api = new Api(baseUrl, {
+const headers = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
-});
+};
+
+const api = new Api(baseUrl, headers);
 
 export default api;
