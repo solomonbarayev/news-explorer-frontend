@@ -3,13 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.2.3",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.2.0",
+    "intl": "^1.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^5.3.3",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -17,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* sbarayev2@35.199.181.106:/home/sbarayev2/frontend"
+    "deploy": "npm run build && scp -r ./build/* sbarayev2@35.199.181.106:/home/sbarayev2/frontend",
+    "lint": "rm -rf ./build && eslint --ext .js,.jsx,.ts,.tsx --fix ./src"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +46,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb-typescript-prettier": "^5.0.0",
+    "standardx": "^3.0.0",
+    "typescript": "^4.9.3"
   }
 }
