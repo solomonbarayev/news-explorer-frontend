@@ -30,6 +30,7 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // register user
     builder
       .addCase(registerUser.pending, (state: UserState) => {
         state.loading = true;
@@ -41,7 +42,10 @@ export const userSlice = createSlice({
       .addCase(registerUser.rejected, (state: UserState, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      })
+      });
+
+    // login user
+    builder
       .addCase(loginUser.pending, (state: UserState) => {
         state.loading = true;
       })
@@ -53,10 +57,12 @@ export const userSlice = createSlice({
         state.loggedIn = true;
       })
       .addCase(loginUser.rejected, (state: UserState, action) => {
-        console.log('userSlice', action.payload);
         state.loading = false;
         state.error = action.payload as string;
-      })
+      });
+
+    //check token
+    builder
       .addCase(checkToken.pending, (state: UserState) => {
         state.loading = true;
       })
